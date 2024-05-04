@@ -1,0 +1,17 @@
+.manager-container{
+    height: 150px;
+    .upload-container{
+        background-color: #b2b2b2;
+        border-radius: 12px;
+        height: fit-content;
+        transition: .4s;
+        &:hover{
+            background-color: #dddddd;
+        }
+        img{
+            width: 60px;
+            height: 60px;
+        }
+        
+    }
+}

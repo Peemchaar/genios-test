@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+
+.flex{
+  display: flex;
+}
+
+.flex-col{
+  flex-direction: column;
+}
+
+.justify-between{
+  justify-content: space-between;
+}
+
+.justify-start{
+  justify-content: flex-start;
+}
+
+.justify-end{
+  justify-content: flex-end;
+}
+
+.justify
+
+.self-center{
+  align-self: center;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.hidden{
+  display: none;
+  visibility: hidden;
+}

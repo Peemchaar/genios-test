@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Header from "./header"
+import FileManager from "./fileManager"
 
 const Dashboard = () => {
 
@@ -7,9 +9,10 @@ const Dashboard = () => {
 
 
     return (
-        <div className="main">
-            DASHBOARD
-        </div>
+        <div>
+            <Header />
+            <FileManager/>
+        </div> 
     )
 }
 

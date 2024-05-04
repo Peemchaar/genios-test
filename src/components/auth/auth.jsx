@@ -10,7 +10,7 @@ const Auth = () => {
         setformType('signin')
     }
     useEffect(() => {
-        console.log(formType)
+       
     }, [formType])
     return (
         <div className="container">
