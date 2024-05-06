@@ -91,12 +91,6 @@ const Dashboard = () => {
         shares: '0',
     });
 
-    const emotionsGraphData = [
-        { id: 0, value: 0, label: 'Positivas' },
-        { id: 1, value: 0, label: 'Negativas' },
-        { id: 2, value: 0, label: 'Neutrales' }
-    ]
-
 
     const customColors = {
         emotions: [
@@ -211,7 +205,6 @@ const Dashboard = () => {
 
     async function analyser(){
         let totalPosts = dataParsed.length
-        let posts = dataParsed
         if(totalPosts > 250){
             alert('Lo sentimos, el archivo que acaba de suministrar es muy pesado y el servidor es algo perezoso 😥. Solo puede procesar aproximadamente 500 peticiones por hora de forma gratuita, tomaremos los primeros 250 registros para procesar las emociones y sentimientos. Por favor acorte el tamaño de su archivo e intente luego con el resto de registros.')
             setIncrementRate((prevIncrementRate) => parseFloat(prevIncrementRate) + (100 / 250));
