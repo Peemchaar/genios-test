@@ -1,0 +1,41 @@
+@use './colors.scss';
+
+.login-container{
+    width: -webkit-fill-available;
+    height: auto;
+    max-height: 100vh;
+    margin: auto;
+    .img-container{ 
+        max-width: 55%;
+        width: -webkit-fill-available;
+        display: flex;
+        img{
+            object-fit: cover;
+            width: -webkit-fill-available;
+        }
+    }
+    .form-container{
+        max-width: 50%;
+        width: -webkit-fill-available;
+        background-color: colors.$value-white;
+        border-top-left-radius: 48px;
+        border-bottom-left-radius: 48px;
+        margin-left: -5%;
+        .inner-container{
+            min-width: 361px;
+            max-width: 361px;
+            img{
+                width: 150px;
+
+            }
+        }
+    }
+}
+
+.login-form{
+    color: colors.$value-black;
+    .custom-btn{
+        margin-top: 100px;
+        width: -webkit-fill-available;
+    }
+}

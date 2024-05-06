@@ -1,0 +1,22 @@
+@use './colors.scss';
+
+
+.header-container{
+    height: 80px;
+    padding-left: 48px;
+    img{
+        width: 24px;
+        height: 24px;
+    }
+    span{
+        color: colors.$primary-rose;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+@media only screen and (max-width: 540px)  {
+    .header-container{
+        padding-left: 18px;
+    }
+}

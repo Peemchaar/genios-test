@@ -1,0 +1,19 @@
+@use './colors.scss';
+
+
+.progress-container{
+    margin-top: 55px;
+    .indicators{
+        font-size: 14px;
+        line-height: 14px;
+        color: colors.$value-black;
+    }
+}
+
+.progress{
+    margin-top: 5px;
+    max-height: 5px !important;
+    .progress-bar{
+        background-color: colors.$primary-rose !important;
+    }
+}

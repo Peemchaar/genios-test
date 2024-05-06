@@ -1,4 +1,5 @@
 import React, { useRef, useState} from 'react';
+import { TextField } from '@mui/material';
 
 const Signup = (props) => {
 
@@ -30,49 +31,54 @@ const Signup = (props) => {
 
     return(
         <form 
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="mt-3 col-12 gap-8 px-3"
+            ref={formRef}
+            className='mt-3 col-12 gap-8 px-3 login-form flex flex-col'
+            component='form'
+            autoComplete='off'
+            onSubmit={handleSubmit}
         >   
-            <label className="row ">
-                <span className="mt-3 mb-2">Nombre</span>
-                <input 
-                    type="text" 
-                    name="name" 
-                    value={form.name} 
-                    onChange={handlechange} 
-                    placeholder="Jhon Doe"
-                    className="py-2 px-2 "
-                />
-            </label>
-            <label className="row ">
-                <span className="mt-3 mb-2">Email</span>
-                <input 
-                    type="email" 
-                    name="email" 
-                    value={form.email} 
-                    onChange={handlechange} 
-                    placeholder="Email@example.com"
-                    className="py-2 px-2 "
-                />
-            </label>
-            <label className="row">
-                <span className="mt-3 mb-2">Contraseña</span>
-                <input 
-                    type="password" 
-                    name="password" 
-                    value={form.password} 
-                    onChange={handlechange} 
-                    placeholder="*******"
-                    className="py-2 px-2 "
-                />
-            </label>
+            <TextField
+                fullWidth
+                id="name"
+                name="name"
+                label="Nombre y Apellido" 
+                variant="standard"
+                margin="normal"
+                required
+                onChange={handlechange}
+            />
+            <TextField
+                fullWidth
+                id="email"
+                name="email"
+                label="Correo electrónico" 
+                variant="standard"
+                margin="normal"
+                required
+                onChange={handlechange}
+            />
+            <TextField
+                fullWidth
+                id="password"
+                name="password"
+                label="Contraseña" 
+                variant="standard"
+                margin="normal"
+                required
+                onChange={handlechange}
+            />
             <button
                 type="submit"
-                className="mt-4 py-3 px-8 outline-none w-fit font-bold shadow-md shadow-primary rounded-xl"
+                className=" py-3 px-8 custom-btn flex items-center justify-center roboto-medium"
             >
-                Registrarse
+                Crear usuario
             </button>
+            <span 
+                className='roboto-medium mt-2 flex self-center pointer'
+                onClick={() => {props.submited()}}
+            >
+                Cancelar registro
+            </span>
         </form>
     )
 }
