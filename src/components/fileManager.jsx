@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from "react"
-import { upload } from "../assets"
+import { add, dashboardImg } from "../assets"
 import '../styles/fileManager.scss'
 import ProgressBar from "./common/progressBar";
 
-const FileManager = () => {
+const FileManager = ({processed, loading, progress}) => {
     const inputRef = useRef();
 
     const [selectedFile, setSelectedFile] = useState(new Blob);
-    const [loading, setLoading] = useState(false);
+    const [csvPristine, setCsvPristine] = useState(true);
     const rowEval = /^[0-9]{1,4}$/;
     const strEval = /^\s[0-9a-zA-Z#@]/;
     const decimalEval = /^[1-9][0-9]? /;
@@ -24,7 +24,6 @@ const FileManager = () => {
                 alert('Formato de archivo incorrecto.')
                 return
             }
-
             setSelectedFile(file);
         }
     };
@@ -162,12 +161,13 @@ const FileManager = () => {
                     parsedRows.splice(i+1,1)
                 }
             }
-            console.log("FINAL DATA: ", parsedRows)
+            parsedRows.splice(0,1)
+            setCsvPristine(false)
+            processed(parsedRows)
         };
+
         reader.readAsText(selectedFile);
     }
-
-
 
     useEffect(() => {
         if(selectedFile.size > 0){
@@ -175,20 +175,49 @@ const FileManager = () => {
         } 
     }, [selectedFile])
 
+    useEffect(() => {
+    }, [csvPristine])
+
+    useEffect(() => {
+       
+    }, [loading])
 
     return (
-        <div className="manager-container px-3 py-3">
-            {
-                !loading?
-                <div className="upload-container flex flex-col items-center justify-center gap-3 pointer py-3" onClick={onFileUpload}>
-                    <img src={upload} alt="upload-logo" />
-                    <span>Carga de archivo .CSV</span>
+        <div className="manager-container flex flex-col justify-start">
+            { csvPristine?
+                <div className="pristine-container flex flex-col justify-start">
+                    <span className="title roboto-medium">Empieza la magia</span>
+                    <span className="subtitle roboto-medium">Carga tu archivo aquí</span>
+                    <img className="main-img" src={dashboardImg} alt="dsh-img"/>
                     <input className="hidden" type="file" ref={inputRef} onChange={onFileChange} />
+                    <button
+                        onClick={onFileUpload}
+                        className=" custom-btn flex items-center justify-center roboto-medium"
+                    >
+                        <img src={add} alt="plus" /> Cargar archivo
+                    </button>
                 </div>
                 :
-                <ProgressBar progress={25}/>
+                <div className="main-container flex flex-col justify-start">
+                    <span className="title roboto-medium ">
+                        Bienvenido, {JSON.parse(sessionStorage.getItem('currentUser')).name.split(" ")[0]}
+                    </span>
+                    <span className="subtitle roboto-medium">
+                        Así se ven tus publicaciones
+                    </span>
+                    {
+                        loading?
+                        <ProgressBar progress={progress}/>
+                        :
+                        <button
+                            onClick={onFileUpload}
+                            className="custom-btn flex items-center justify-center roboto-medium"
+                        >
+                            <img src={add} alt="plus" /> Cargar otro archivo
+                        </button>
+                    }
+                </div>
             }
-            
         </div>
     )
 }

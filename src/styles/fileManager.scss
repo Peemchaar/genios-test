@@ -1,17 +1,81 @@
+@use './colors.scss';
+
 .manager-container{
-    height: 150px;
-    .upload-container{
-        background-color: #b2b2b2;
-        border-radius: 12px;
-        height: fit-content;
-        transition: .4s;
-        &:hover{
-            background-color: #dddddd;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height: auto;
+    width: -webkit-fill-available;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    .pristine-container{
+        width: -webkit-fill-available;
+        max-width: 456px;
+        .title{
+            color: colors.$value-black;
+            font-size: 48px;
+            line-height: 48px;
+            text-align: center;
         }
-        img{
-            width: 60px;
-            height: 60px;
+        .subtitle{
+            margin-top: 7px;
+            color: colors.$value-grey;
+            font-size: 24px;
+            line-height: 24px;
+            text-align: center;
         }
-        
+        .main-img{
+            margin-top: 65px;
+        }
+        .custom-btn{
+            margin-top: 70px;
+            width: -webkit-fill-available;
+            gap: 8px;
+            img{
+                width: 18px;
+            }
+        }
+    }
+    .main-container{
+        width: -webkit-fill-available;
+        .title{
+            color: colors.$value-black;
+            font-size: 48px;
+            line-height: 48px;
+            text-align:left;
+        }
+        .subtitle{
+            margin-top: 7px;
+            color: colors.$value-grey;
+            font-size: 24px;
+            line-height: 24px;
+            text-align:left;
+        }
+        .custom-btn{
+            margin-top: 55px;
+            width: -webkit-fill-available;
+            max-width: 256px;
+            gap: 8px;
+            img{
+                width: 18px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 540px)  {
+    .manager-container{
+        padding-left: 18px;
+        padding-right: 18px;
+        .pristine-container{
+            .title{
+                font-size: 36px;
+                line-height: 36px;
+                text-align: left;
+            }
+            .subtitle{
+                text-align: left;
+            }
+        }
     }
 }

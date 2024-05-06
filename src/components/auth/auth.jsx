@@ -1,39 +1,27 @@
 import React, {useEffect, useState} from 'react';
-
+import '../../styles/login.scss';
 import Signin from "./signin"
 import Signup from "./signup"
+import { loginBg, pedroLogo } from '../../assets';
 
 const Auth = () => {
     const [formType, setformType] = useState('signin');
     
-    function onRegister(){
-        setformType('signin')
-    }
     useEffect(() => {
        
     }, [formType])
     return (
-        <div className="container">
-            <div className="card mt-2">
-                <div className="card-header">
-                    <div className="btn-group col-12" role="group" aria-label="Basic example">
-                        <button type="button" className="btn btn-primary"
-                            onClick={() => {setformType('signin')}}
-                        >
-                            Ingresar
-                        </button>
-                        <button type="button" className="btn btn-info"
-                             onClick={() => {setformType('signup')}}
-                        >
-                            Registrarse
-                        </button>
-                    </div>
-                </div>
-                <div className="card-body">
+        <div className="login-container flex justify-center">
+            <div className="img-container">
+                <img src={loginBg} alt="login-background" />
+            </div>
+            <div className="form-container flex justify-center items-center">
+                <div className="inner-container flex flex-col">
+                    <img className='self-center' src={pedroLogo} alt="pedro-pe" />
                     {
                         formType == 'signin'?
-                        <Signin /> :
-                        <Signup submited={onRegister}/>
+                        <Signin register={() => {setformType('signup')}}/> :
+                        <Signup submited={() => {setformType('signin')}}/>
                     }
                 </div>
             </div>

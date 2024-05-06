@@ -1,3 +1,27 @@
+@use './styles/colors.scss';
+
+@font-face {
+  font-family: RobotoRegular;
+  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: RobotoMedium;
+  src: url('./assets/fonts/Roboto/Roboto-Medium.ttf');
+  font-weight: 500;
+}
+
+.roboto-regular{
+  font-family: 'RobotoRegular' !important;
+}
+.roboto-medium{
+  font-family: 'RobotoMedium' !important;
+}
+
+
+body{
+  height: 100vh;
+}
 .App {
   text-align: center;
 }
@@ -28,6 +52,16 @@
   color: #61dafb;
 }
 
+.custom-btn{
+  height: 40px;
+  border-radius: 100px;
+  background: colors.$primary-rose;
+  border: none;
+  color: colors.$value-white;
+  font-size: 14px;
+  line-height: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -37,6 +71,26 @@
   }
 }
 
+
+.css-1ujykiq-MuiButtonBase-root-MuiTab-root{
+  color: colors.$value-black !important;
+  font-family: 'RobotoMedium' !important;
+  text-transform: capitalize !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+.css-13xfq8m-MuiTabPanel-root{
+  margin-top: 37px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  justify-content: flex-start;
+  padding: 0 !important;
+}
+
+.css-i9w63o-MuiResponsiveChart-container{
+  margin-top: -60px !important;
+}
 
 .flex{
   display: flex;
@@ -58,7 +112,9 @@
   justify-content: flex-end;
 }
 
-.justify
+.justify-center{
+  justify-content: center;
+}
 
 .self-center{
   align-self: center;

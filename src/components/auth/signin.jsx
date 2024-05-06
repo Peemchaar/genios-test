@@ -1,8 +1,11 @@
-import React, { useRef, useState} from 'react';
-import { useNavigate } from "react-router-dom"
+import React, { useRef, useState, useEffect} from 'react';
+import { useNavigate } from "react-router-dom";
+import { TextField } from '@mui/material';
 
-const Signin = () => {
+const Signin = (props) => {
     const navigate = useNavigate()
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
     const formRef = useRef();
     const [form, setForm] = useState({ 
@@ -15,49 +18,70 @@ const Signin = () => {
         setForm({...form, [name]: value})
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const fetchUser = localStorage.getItem(form.email)
-        if(fetchUser != null && JSON.parse(fetchUser).password === form.password){
-            sessionStorage.setItem('currentUser', fetchUser)
-            navigate('/dashboard')
+        if(fetchUser != null){
+            if(JSON.parse(fetchUser).password === form.password){
+                sessionStorage.setItem('currentUser', fetchUser)
+                navigate('/dashboard');
+            }else{
+                setPasswordError(true)
+            }
+        }else{
+            setEmailError(true)  
         }
     }
 
+    useEffect(() => {
+
+    }, [emailError, passwordError])
+
     return(
         <form 
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="mt-3 col-12 gap-8 px-3"
+            ref={formRef}
+            className='mt-3 col-12 gap-8 px-3 login-form flex flex-col'
+            component='form'
+            autoComplete='off'
+            onSubmit={handleSubmit}
         >
-            <label className="row ">
-                <span className="mt-3 mb-2">Email</span>
-                <input 
-                    type="email" 
-                    name="email" 
-                    value={form.email} 
-                    onChange={handlechange} 
-                    placeholder="Email@example.com"
-                    className="py-2 px-2 "
-                />
-            </label>
-            <label className="row">
-                <span className="mt-3 mb-2">Contraseña</span>
-                <input 
-                    type="password" 
-                    name="password" 
-                    value={form.password} 
-                    onChange={handlechange} 
-                    placeholder="*******"
-                    className="py-2 px-2 "
-                />
-            </label>
+            <TextField
+                fullWidth
+                id="standard"
+                name="email"
+                label="Correo electrónico" 
+                variant="standard"
+                margin="normal"
+                //value={form.email} 
+                onChange={handlechange}
+                error={emailError}
+                helperText={ emailError? 'Este usuario no existe en el sistema' : ''}
+            />
+            <TextField
+                fullWidth
+                id="standard-password"
+                name="password"
+                label="Contraseña" 
+                variant="standard"
+                margin="normal"
+                //value={form.password} 
+                onChange={handlechange}
+                error={passwordError}
+                type='password'
+                helperText={ passwordError && 'Contraseña incorrecta'}
+            />
             <button
                 type="submit"
-                className="mt-4 py-3 px-8 outline-none w-fit font-bold shadow-md shadow-primary rounded-xl"
+                className=" py-3 px-8 custom-btn flex items-center justify-center roboto-medium"
             >
                 Iniciar sesión
             </button>
+            <span 
+                className='roboto-medium mt-2 flex self-center pointer'
+                onClick={() => {props.register()}}
+            >
+                Registrarme
+            </span>
         </form>
     )
 }
