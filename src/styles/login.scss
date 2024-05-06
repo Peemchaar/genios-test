@@ -39,3 +39,14 @@
         width: -webkit-fill-available;
     }
 }
+
+@media only screen and (max-width: 540px)  {
+    .img-container{
+        display: none;
+    }
+    .form-container{
+        max-width: -webkit-fill-available !important;
+        margin-left: 0;
+        height: 100vh;
+    }
+}
