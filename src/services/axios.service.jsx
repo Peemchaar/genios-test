@@ -1,12 +1,12 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import { API_TOKEN, API_BASE_URL,BACKUP_TOKEN } from '../environment';
+import { API_TOKEN, API_BASE_URL, } from '../environment';
 
 
 
 
 axios.defaults.baseURL = `${API_BASE_URL}`; 
-axios.defaults.headers.common['Authorization'] = `Bearer ${BACKUP_TOKEN}`;
+axios.defaults.headers.common['Authorization'] = `Bearer ${API_TOKEN}`;
 
 axiosRetry(axios, {
     retries: 2,
