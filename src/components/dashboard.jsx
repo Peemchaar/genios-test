@@ -421,12 +421,12 @@ const Dashboard = () => {
             }
         };
 
-    if(fetchSentiments){
+    if(fetchEmotions){
         fetchEmotionsData();
     }
     
 
-}, [fetchSentiments])
+}, [fetchEmotions])
 
     useEffect(() => {
 
